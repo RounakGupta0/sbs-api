@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express()
 const userRoute = require('./Routes/user')
@@ -6,7 +7,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 
-// mongoose.connect('mongodb+srv://rounak:rounak1234@sbs.4aiqmhs.mongodb.net/?appName=SBS')
+// mongoose.connect()
 // .then(()=>{
 //     console.log("connected with database")
 // })
@@ -17,7 +18,7 @@ const bodyParser = require('body-parser')
 
 const connectWithDatabase = async()=>{
     try{
-        await mongoose.connect('mongodb+srv://rounak:rounak1234@sbs.4aiqmhs.mongodb.net/?appName=SBS')
+        await mongoose.connect(process.env.MONGODB_URL)
         console.log("connected with database")
     }
     catch(err){
