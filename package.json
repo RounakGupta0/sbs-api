@@ -16,8 +16,11 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
+    "cloudinary": "^2.9.0",
     "dotenv": "^17.4.1",
     "express": "^5.2.1",
+    "express-fileupload": "^1.5.2",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.3.3",
     "nodemon": "^3.1.14"
   }
