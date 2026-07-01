@@ -14,23 +14,26 @@ cloudinary.config({
 // signup api
 Router.post('/signup', async (req, res) => {
     try {
+        // console.log('signup api call gya')
         const data = await User.find({ email: req.body.email })
         if (data.length > 0) {
             return res.status(200).json({
                 message: "Email already registered"
             })
         }
+        
         const hash = await bcrypt.hash(req.body.password, 10)
-        const uploadedresult = await cloudinary.uploader.upload(req.files.photo.tempFilePath)
-
+        // const uploadedresult = await cloudinary.uploader.upload(req.files.photo.tempFilePath)
+        console.log(hash)
         const newUser = new User({
             fullName: req.body.fullName,
             phone: req.body.phone,
             email: req.body.email,
             password: hash,
-            imageId : uploadedresult.public_id,
-            imageUrl: uploadedresult.secure_url
+            // imageId : uploadedresult.public_id,
+            // imageUrl: uploadedresult.secure_url
         })
+        console.log(newUser)
 
         await newUser.save()
         const result = {
