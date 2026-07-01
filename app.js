@@ -29,6 +29,8 @@ const connectWithDatabase = async()=>{
 
 connectWithDatabase()
 
+app.use(cors());
+
 app.use(fileupload({
     useTempFiles:true,
     tempFileDir:'/tmp/'
