@@ -17,7 +17,7 @@ Router.post('/signup', async (req, res) => {
         // console.log('signup api call gya')
         const data = await User.find({ email: req.body.email })
         if (data.length > 0) {
-            return res.status(200).json({
+            return res.status(500).json({
                 message: "Email already registered"
             })
         }
