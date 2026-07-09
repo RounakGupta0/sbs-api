@@ -56,7 +56,7 @@ Router.get('/get-contact',async(req,res)=>{
         const token = req.headers.authorization.split(" ")[1]
         const tokenData = await jwt.verify(token,process.env.SEC_KEY)
 
-        const allContact = await Contact.find({userId:tokenData.userId}).select("_id fullName email phone address gender userId imageId imageUrl").populate('userId','fullName email')
+        const allContact = await Contact.find({userId:tokenData.userId}).select("_id fullName email phone userId imageId imageUrl").populate('userId','fullName email')
         //console.log(allContact)
         res.status(200).json({
             contacts:allContact
