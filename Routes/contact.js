@@ -79,8 +79,14 @@ Router.get('/contactById/:id',async(req,res)=>{
         const token = req.headers.authorization.split(" ")[1]
         const tokenData = await jwt.verify(token,process.env.SEC_KEY)
         const data = await Contact.find({_id:req.params.id,userId:tokenData.userId}).select("_id fullName email phone address gender userId imageId imageUrl").populate('userId','fullName email')
+        if (data.length === 0)
+        {
+            return res.status(404).json({
+                message : 'no contact found'
+            })
+        }
         return res.status(200).json({     //why we used return here
-            contact : data.length>0 ? data[0] : {}
+            contact : data[0]
         })
     }
     catch(err)
