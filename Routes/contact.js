@@ -85,6 +85,7 @@ Router.get('/contactById/:id',async(req,res)=>{
                 message : 'no contact found'
             })
         }
+        
         return res.status(200).json({     //why we used return here
             contact : data[0]
         })
@@ -187,12 +188,12 @@ Router.put('/update/:id', async (req, res) => {
         const IDContact = await Contact.findById(req.params.id)
         if (!IDContact)
         {
-            return res.status(500).json({
+            return res.status(404).json({
                 msg: 'no contacts exists with this id'
             })
         }
         if (IDContact.userId != tokenData.userId) {
-            return res.status(500).json({
+            return res.status(400).json({
                 msg: "you dont have accesss to this data"
             })
         }
