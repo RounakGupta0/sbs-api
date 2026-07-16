@@ -258,7 +258,7 @@ Router.get('/count/:gender', async (req, res) => {
     }
 })
 
-Router.get('/dashboard', async (req, res) => {
+Router.get('/dashboard/home', async (req, res) => {
     try {
         const token = req.headers.authorization.split(" ")[1]
         const tokenData = await jwt.verify(token, process.env.SEC_KEY)
